@@ -43,18 +43,21 @@ public class GpsCord extends AppCompatActivity {
                     String location = "My Location is -\nLat: " + latitude + "\nLong: "
                             + longitude;
 
-                        ConnectivityManager connMgr = (ConnectivityManager)
-                                getSystemService(Context.CONNECTIVITY_SERVICE);
-                        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-                        if (networkInfo != null && networkInfo.isConnected()) {
-                            Intent sendIntent = new Intent();
-                            sendIntent.setAction(Intent.ACTION_SEND);
-                            sendIntent.putExtra(Intent.EXTRA_TEXT, location);
-                            sendIntent.setType("text/plain");
-                            startActivity(Intent.createChooser(sendIntent, "Upload Coordinates to Drive:"));
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Unable to upload. Please check your internet connection",Toast.LENGTH_LONG).show();
-                        }
+                    ConnectivityManager connMgr = (ConnectivityManager)
+                            getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                    if (networkInfo != null && networkInfo.isConnected()) {
+                        Intent sendIntent = new Intent();
+                        sendIntent.setAction(Intent.ACTION_SEND);
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, location);
+                        sendIntent.setType("text/plain");
+                        Intent sessionStart = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(sessionStart);
+                        startActivity(Intent.createChooser(sendIntent, "Upload Coordinates to Drive:"));
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Unable to upload. Please check your internet connection",Toast.LENGTH_LONG).show();
+                    }
 
                 } else {
                     gps.showSettingsAlert();

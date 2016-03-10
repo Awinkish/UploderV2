@@ -37,7 +37,7 @@ public class UploadText extends AppCompatActivity {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.setType("text/plain");
-                sendIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Description");
+                sendIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Description.txt");
                 sendIntent.putExtra(Intent.EXTRA_TEXT, textDesc);
                 Intent sessionStart = new Intent(getApplicationContext(), GpsCord.class);
                 startActivity(sessionStart);

@@ -51,8 +51,8 @@ public class GpsCord extends AppCompatActivity {
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, location);
                         sendIntent.setType("text/plain");
-                        Intent sessionStart = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(sessionStart);
+                        Intent sessionStar = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(sessionStar);
                         startActivity(Intent.createChooser(sendIntent, "Upload Coordinates to Drive:"));
 
                     } else {

@@ -34,6 +34,7 @@ public class UploadText extends AppCompatActivity {
                     getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
             if (networkInfo != null && networkInfo.isConnected()) {
+
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.setType("text/plain");
@@ -43,6 +44,7 @@ public class UploadText extends AppCompatActivity {
                 startActivity(sessionStart);
                 editText.setText("");
                 startActivity(Intent.createChooser(sendIntent, "Upload description to Drive:"));
+
             } else {
                 Toast.makeText(getApplicationContext(), "Unable to upload. Please check your internet connection", Toast.LENGTH_LONG).show();
             }

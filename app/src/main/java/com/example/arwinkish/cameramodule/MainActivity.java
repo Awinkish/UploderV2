@@ -172,8 +172,6 @@ public class MainActivity extends AppCompatActivity {
             videoPreview.setVisibility(View.VISIBLE);
             videoPreview.setVideoPath(fileUri.getPath());
 
-
-            Toast.makeText(getApplicationContext(),fileUri.toString(), Toast.LENGTH_LONG).show();
             videoPreview.start();
         } catch (Exception e) {
             e.printStackTrace();

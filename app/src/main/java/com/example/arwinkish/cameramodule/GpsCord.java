@@ -30,29 +30,34 @@ public class GpsCord extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                /*Objects to get tracker longitude and latitude approximates*/
                 gps = new GPSTracker(GpsCord.this);
 
                 if(gps.canGetLocation()) {
                     double latitude = gps.getLatitude();
                     double longitude = gps.getLongitude();
-
+                    /*Display tracker results in toast*/
                     Toast.makeText(
                             getApplicationContext(),
                             "My Location is -\nLat: " + latitude + "\nLong: "
                                     + longitude, Toast.LENGTH_LONG).show();
                     String location = "My Location is -\nLat: " + latitude + "\nLong: "
                             + longitude;
-
+                    /*Check for internet connection*/
                     ConnectivityManager connMgr = (ConnectivityManager)
                             getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
                     if (networkInfo != null && networkInfo.isConnected()) {
+                        /*Get tracker information and feeds it to the sendIntent for upload*/
+
                         Intent sendIntent = new Intent();
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_TEXT, location);
+                        /*Convert the information to .txt before upload*/
+
                         sendIntent.setType("text/plain");
                         Intent sessionStar = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(sessionStar);
+                        startActivity(sessionStar);//Start class Main activity for new upload
                         startActivity(Intent.createChooser(sendIntent, "Upload Coordinates to Drive:"));
 
                     } else {
